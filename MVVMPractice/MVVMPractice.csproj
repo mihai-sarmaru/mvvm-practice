@@ -59,8 +59,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Services\EmployeeRepository.cs" />
-    <Compile Include="Views\EmployeeForm.xaml.cs">
-      <DependentUpon>EmployeeForm.xaml</DependentUpon>
+    <Compile Include="Views\EmployeeFormView.xaml.cs">
+      <DependentUpon>EmployeeFormView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -74,7 +74,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\EmployeeForm.xaml">
+    <Page Include="Views\EmployeeFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

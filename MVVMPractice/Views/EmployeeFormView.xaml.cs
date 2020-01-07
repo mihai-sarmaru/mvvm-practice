@@ -4,8 +4,8 @@ namespace MVVMPractice.Views {
     /// <summary>
     /// Interaction logic for EmployeeForm.xaml
     /// </summary>
-    public partial class EmployeeForm : UserControl {
-        public EmployeeForm() {
+    public partial class EmployeeFormView : UserControl {
+        public EmployeeFormView() {
             InitializeComponent();
         }
     }
