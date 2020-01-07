@@ -3,39 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MVVMPractice.Views"
+             xmlns:local="clr-namespace:MVVMPractice.ViewModels"
              mc:Ignorable="d">
+    <UserControl.DataContext>
+        <local:EmployeeFormViewModel/>
+    </UserControl.DataContext>
     
     <Grid Margin="5, 10">
         
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,10">
                 <TextBlock Text="Name:" MinWidth="75"/>
-                <TextBox Text="Enter your name" MinWidth="200"/>
+                <TextBox Text="{Binding Employee.Name}" MinWidth="200"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,10">
                 <TextBlock Text="Surname:" MinWidth="75"/>
-                <TextBox Text="Enter your surname" MinWidth="200"/>
+                <TextBox Text="{Binding Employee.Surname}" MinWidth="200"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,10">
                 <TextBlock Text="Age:" MinWidth="75"/>
-                <TextBox Text="Enter your age" MinWidth="200"/>
+                <TextBox Text="{Binding Employee.Age}" MinWidth="200"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,10">
                 <TextBlock Text="Phone:" MinWidth="75"/>
-                <TextBox Text="Enter your phone number" MinWidth="200"/>
+                <TextBox Text="{Binding Employee.PhoneNumber}" MinWidth="200"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,10">
                 <TextBlock Text="Experience:" MinWidth="75"/>
-                <TextBox Text="Enter your experience years" MinWidth="200"/>
+                <TextBox Text="{Binding Employee.Experience}" MinWidth="200"/>
             </StackPanel>
 
             <StackPanel  HorizontalAlignment="Left" Margin="20,10">
-                <Button Content="Save" Margin="175,0,0,0" Width="100"/>
+                <Button Content="Save" Command="{Binding SaveCommand}" Margin="175,0,0,0" Width="100"/>
             </StackPanel>
         </StackPanel>
 
