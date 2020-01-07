@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using MVVMPractice.Models;
 using Newtonsoft.Json;
@@ -9,13 +10,14 @@ namespace MVVMPractice.Services {
         private const string JSON_FOLDER = "json";
         private const string JSON_EMPLOYEE_FILENAME = "Employee.json";
 
-        public static Employee GetEmployee() {
-            return JsonConvert.DeserializeObject<Employee>(File.ReadAllText(GetEmployeeJsonPath()));
+        public static List<Employee> GetEmployeeList() {
+            return JsonConvert.DeserializeObject<List<Employee>>(File.ReadAllText(GetEmployeeJsonPath()));
         }
 
-        public static void SaveEmployee(Employee employee) {
-            string serializedEmployee = JsonConvert.SerializeObject(employee);
-            File.WriteAllText(GetEmployeeJsonPath(), serializedEmployee);
+        public static void SaveEmployeeToList(Employee employee) {
+            List<Employee> employeeList = GetEmployeeList();
+            employeeList.Add(employee);
+            File.WriteAllText(GetEmployeeJsonPath(), JsonConvert.SerializeObject(employeeList));
         }
 
         public static string GetEmployeeJsonPath() {

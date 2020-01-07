@@ -13,7 +13,7 @@ namespace MVVMPractice.ViewModels {
         }
 
         public void SaveEmployee() {
-            EmployeeRepository.SaveEmployee(Employee);
+            EmployeeRepository.SaveEmployeeToList(Employee);
         }
     }
 }
