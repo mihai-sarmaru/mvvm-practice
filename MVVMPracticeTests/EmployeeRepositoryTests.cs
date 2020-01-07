@@ -14,5 +14,11 @@ namespace MVVMPracticeTests {
 
             Assert.AreEqual(expected, result);
         }
+
+        [TestMethod]
+        public void TestCreatePathDirectory() {
+            EmployeeRepository.CreatePathDirectory();
+            Assert.IsTrue(Directory.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json")));
+        }
     }
 }
