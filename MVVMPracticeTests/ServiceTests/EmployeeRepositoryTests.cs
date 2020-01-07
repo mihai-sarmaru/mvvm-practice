@@ -23,6 +23,14 @@ namespace MVVMPracticeTests {
         }
 
         [TestMethod]
+        public void TestSaveEmployee() {
+            Employee emp = EmployeeRepository.DefaultEmployee();
+            EmployeeRepository.SaveEmployee(emp);
+
+            Assert.IsTrue(File.Exists(EmployeeRepository.GetEmployeeJsonPath()));
+        }
+
+        [TestMethod]
         public void TestDefaultEmployee() {
             Employee emp = EmployeeRepository.DefaultEmployee();
 
