@@ -25,5 +25,9 @@ namespace MVVMPractice.Services {
             }
         }
 
+        public static Employee DefaultEmployee() {
+            return new Employee() { Name = "William", Surname = "Smith", Age = 27, PhoneNumber = 1234567890, Experience = 5 };
+        }
+
     }
 }
