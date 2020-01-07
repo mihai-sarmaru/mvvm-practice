@@ -9,6 +9,10 @@ namespace MVVMPractice.Services {
         private const string JSON_FOLDER = "json";
         private const string JSON_EMPLOYEE_FILENAME = "Employee.json";
 
+        public static Employee GetEmployee() {
+            return JsonConvert.DeserializeObject<Employee>(File.ReadAllText(GetEmployeeJsonPath()));
+        }
+
         public static void SaveEmployee(Employee employee) {
             string serializedEmployee = JsonConvert.SerializeObject(employee);
             File.WriteAllText(GetEmployeeJsonPath(), serializedEmployee);

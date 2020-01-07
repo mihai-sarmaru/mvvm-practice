@@ -31,6 +31,15 @@ namespace MVVMPracticeTests {
         }
 
         [TestMethod]
+        public void TestGetEmployee() {
+            Employee emp = EmployeeRepository.GetEmployee();
+
+            Assert.IsNotNull(emp);
+            Assert.IsNotNull(emp.Name);
+            Assert.IsNotNull(emp.Surname);
+        }
+
+        [TestMethod]
         public void TestDefaultEmployee() {
             Employee emp = EmployeeRepository.DefaultEmployee();
 
