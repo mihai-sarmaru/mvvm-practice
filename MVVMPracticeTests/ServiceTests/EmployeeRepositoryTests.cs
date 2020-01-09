@@ -39,13 +39,18 @@ namespace MVVMPracticeTests {
 
         [TestMethod]
         public void TestEmployeeJsonFileExists() {
-            Assert.IsTrue(EmployeeRepository.EmployeeJsonFileExists());
+            if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json", "Employee.json"))) {
+                Assert.IsTrue(EmployeeRepository.EmployeeJsonFileExists());
+            } else {
+                Assert.IsFalse(EmployeeRepository.EmployeeJsonFileExists());
+            }
         }
 
         [TestMethod]
         public void TestDefaultEmployee() {
             Employee emp = EmployeeRepository.DefaultEmployee();
-
+            
+            Assert.AreEqual(emp.ID, "f1d0f9a3-69f4-401e-bcea-83c05b08834a");
             Assert.AreEqual(emp.Name, "William");
             Assert.AreEqual(emp.Surname, "Smith");
             Assert.AreEqual(emp.Age, 27);

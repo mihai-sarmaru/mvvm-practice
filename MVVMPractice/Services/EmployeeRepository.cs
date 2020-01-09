@@ -38,7 +38,8 @@ namespace MVVMPractice.Services {
         }
 
         public static Employee DefaultEmployee() {
-            return new Employee() { Name = "William", Surname = "Smith", Age = 27, PhoneNumber = 1234567890, Experience = 5 };
+            return new Employee() { ID = "f1d0f9a3-69f4-401e-bcea-83c05b08834a",
+                Name = "William", Surname = "Smith", Age = 27, PhoneNumber = 1234567890, Experience = 5 };
         }
 
     }
