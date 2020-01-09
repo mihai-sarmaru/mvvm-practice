@@ -82,6 +82,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Messages\UpdateEmployeeListMessage.cs" />
     <Compile Include="Services\EmployeeRepository.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
     <Compile Include="ViewModels\EmployeeListViewModel.cs" />
