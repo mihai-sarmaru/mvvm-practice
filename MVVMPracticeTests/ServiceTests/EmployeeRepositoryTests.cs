@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MVVMPractice.Models;
@@ -32,11 +33,13 @@ namespace MVVMPracticeTests {
 
         [TestMethod]
         public void TestGetEmployee() {
-            Employee emp = EmployeeRepository.GetEmployeeList();
-
+            List<Employee> emp = EmployeeRepository.GetEmployeeList();
             Assert.IsNotNull(emp);
-            Assert.IsNotNull(emp.Name);
-            Assert.IsNotNull(emp.Surname);
+        }
+
+        [TestMethod]
+        public void TestEmployeeJsonFileExists() {
+            Assert.IsTrue(EmployeeRepository.EmployeeJsonFileExists());
         }
 
         [TestMethod]
