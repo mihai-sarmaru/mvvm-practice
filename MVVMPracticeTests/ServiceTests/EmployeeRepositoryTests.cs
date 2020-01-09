@@ -9,9 +9,18 @@ namespace MVVMPracticeTests {
     [TestClass]
     public class EmployeeRepositoryTests {
 
+        public string JSON_PATH { get; set; } = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json", "Employee.json");
+
+        [TestInitialize]
+        public void StartUp() {
+            if (File.Exists(JSON_PATH)) {
+                File.Delete(JSON_PATH);
+            }
+        }
+
         [TestMethod]
         public void TestGetEmployeeJsonPath() {
-            string expected = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json", "Employee.json");
+            string expected = JSON_PATH;
             string result = EmployeeRepository.GetEmployeeJsonPath();
 
             Assert.AreEqual(expected, result);
@@ -39,7 +48,7 @@ namespace MVVMPracticeTests {
 
         [TestMethod]
         public void TestEmployeeJsonFileExists() {
-            if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json", "Employee.json"))) {
+            if (File.Exists(JSON_PATH)) {
                 Assert.IsTrue(EmployeeRepository.EmployeeJsonFileExists());
             } else {
                 Assert.IsFalse(EmployeeRepository.EmployeeJsonFileExists());
