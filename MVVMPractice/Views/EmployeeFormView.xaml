@@ -4,10 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMPractice.ViewModels"
+             xmlns:rule="clr-namespace:MVVMPractice.ValidationRules"
              mc:Ignorable="d">
     <UserControl.DataContext>
         <local:EmployeeFormViewModel/>
     </UserControl.DataContext>
+
+    <UserControl.Resources>
+        
+        <ControlTemplate x:Key="IntegerMinMaxValidation">
+            <DockPanel>
+                <TextBlock Foreground="Red">!</TextBlock>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+
+        <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)/ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </UserControl.Resources>
     
     <Grid Margin="5, 10">
         
@@ -24,17 +45,47 @@
             
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,10">
                 <TextBlock Text="Age:" MinWidth="75"/>
-                <TextBox Text="{Binding Employee.Age}" MinWidth="200"/>
+                <TextBox MinWidth="200"
+                         Validation.ErrorTemplate="{StaticResource IntegerMinMaxValidation}"
+                         Style="{StaticResource textBoxInError}">
+                    <TextBox.Text>
+                        <Binding Path="Employee.Age" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rule:IntegerMinMaxRule Min="18" Max="120"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,10">
                 <TextBlock Text="Phone:" MinWidth="75"/>
-                <TextBox Text="{Binding Employee.PhoneNumber}" MinWidth="200"/>
+                <TextBox MinWidth="200"
+                         Validation.ErrorTemplate="{StaticResource IntegerMinMaxValidation}"
+                         Style="{StaticResource textBoxInError}">
+                    <TextBox.Text>
+                        <Binding Path="Employee.PhoneNumber" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rule:IntegerMinMaxRule Min="0" Max="999999999"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,10">
                 <TextBlock Text="Experience:" MinWidth="75"/>
-                <TextBox Text="{Binding Employee.Experience}" MinWidth="200"/>
+                <TextBox MinWidth="200"
+                         Validation.ErrorTemplate="{StaticResource IntegerMinMaxValidation}"
+                         Style="{StaticResource textBoxInError}">
+                    <TextBox.Text>
+                        <Binding Path="Employee.Experience" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rule:IntegerMinMaxRule Min="0" Max="50"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </StackPanel>
 
             <StackPanel  HorizontalAlignment="Left" Margin="20,10">
