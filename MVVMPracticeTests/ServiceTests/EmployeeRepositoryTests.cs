@@ -41,7 +41,16 @@ namespace MVVMPracticeTests {
         }
 
         [TestMethod]
-        public void TestGetEmployee() {
+        public void TestSaveEmployeeList() {
+            List<Employee> empList = EmployeeRepository.GetEmployeeList();
+            empList.Add(EmployeeRepository.DefaultEmployee());
+            EmployeeRepository.SaveEmployeeList(empList);
+
+            Assert.IsTrue(File.Exists(EmployeeRepository.GetEmployeeJsonPath()));
+        }
+
+        [TestMethod]
+        public void TestGetEmployeeList() {
             List<Employee> emp = EmployeeRepository.GetEmployeeList();
             Assert.IsNotNull(emp);
         }
@@ -65,6 +74,19 @@ namespace MVVMPracticeTests {
             Assert.AreEqual(emp.Age, 27);
             Assert.AreEqual(emp.PhoneNumber, 1234567890);
             Assert.AreEqual(emp.Experience, 5);
+        }
+
+        [TestMethod]
+        public void TestRemoveEmployeeFromList() {
+            List<Employee> empList = EmployeeRepository.GetEmployeeList();
+            int employeeCount = empList.Count;
+
+            Employee emp = EmployeeRepository.DefaultEmployee();
+            EmployeeRepository.SaveEmployeeToList(emp);
+            EmployeeRepository.RemoveEmployeeFromList(emp);
+            empList = EmployeeRepository.GetEmployeeList();
+
+            Assert.AreEqual(empList.Count, employeeCount);
         }
     }
 }

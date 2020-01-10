@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using MVVMPractice.Models;
 using Newtonsoft.Json;
 
@@ -19,7 +20,18 @@ namespace MVVMPractice.Services {
         public static void SaveEmployeeToList(Employee employee) {
             List<Employee> employeeList = GetEmployeeList();
             employeeList.Add(employee);
+            SaveEmployeeList(employeeList);
+        }
+
+        public static void SaveEmployeeList(List<Employee> employeeList) {
             File.WriteAllText(GetEmployeeJsonPath(), JsonConvert.SerializeObject(employeeList));
+        }
+
+        public static void RemoveEmployeeFromList(Employee employee) {
+            List<Employee> employeeList = GetEmployeeList();
+            Employee employeeToRemove = employeeList.Single(empID => empID.ID == employee.ID);
+            employeeList.Remove(employeeToRemove);
+            SaveEmployeeList(employeeList);
         }
 
         public static string GetEmployeeJsonPath() {

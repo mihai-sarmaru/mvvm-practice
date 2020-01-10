@@ -30,6 +30,7 @@ namespace MVVMPractice.ViewModels {
         private void RemoveEmployeeFromList(string employeeID) {
             Employee employeeToRemove = EmployeeList.Single(empID => empID.ID == employeeID);
             EmployeeList.Remove(employeeToRemove);
+            EmployeeRepository.RemoveEmployeeFromList(employeeToRemove);
         }
 
         private void UpdateEmployeeList(UpdateEmployeeListMessage message) {
