@@ -17,7 +17,7 @@ namespace MVVMPractice.ViewModels {
             Messenger.Default.Register<UpdateEmployeeFormMessage>(this, UpdateEmployee);
         }
 
-        private void UpdateEmployee(UpdateEmployeeFormMessage message) {
+        public void UpdateEmployee(UpdateEmployeeFormMessage message) {
             Employee = message.Employee;
         }
 

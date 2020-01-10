@@ -23,17 +23,17 @@ namespace MVVMPractice.ViewModels {
             RemoveEmployeeCommand = new RelayCommand<string>((empID) => RemoveEmployeeFromList(empID));
         }
 
-        private void EmployeeListSelectionChanged(Employee employee) {
+        public void EmployeeListSelectionChanged(Employee employee) {
             Messenger.Default.Send(new UpdateEmployeeFormMessage { Employee = employee });
         }
 
-        private void RemoveEmployeeFromList(string employeeID) {
+        public void RemoveEmployeeFromList(string employeeID) {
             Employee employeeToRemove = EmployeeList.Single(empID => empID.ID == employeeID);
             EmployeeList.Remove(employeeToRemove);
             EmployeeRepository.RemoveEmployeeFromList(employeeToRemove);
         }
 
-        private void UpdateEmployeeList(UpdateEmployeeListMessage message) {
+        public void UpdateEmployeeList(UpdateEmployeeListMessage message) {
             EmployeeList.Add(message.Employee);
         }
     }
