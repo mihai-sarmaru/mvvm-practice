@@ -23,7 +23,7 @@ namespace MVVMPractice.ViewModels {
 
         public void SaveEmployee() {
             EmployeeRepository.SaveEmployeeToList(Employee);
-            Messenger.Default.Send(new UpdateEmployeeListMessage { Employee = this.Employee });
+            Messenger.Default.Send(new UpdateEmployeeListMessage());
         }
     }
 }

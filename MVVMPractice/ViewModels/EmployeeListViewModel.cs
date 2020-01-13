@@ -34,7 +34,7 @@ namespace MVVMPractice.ViewModels {
         }
 
         public void UpdateEmployeeList(UpdateEmployeeListMessage message) {
-            EmployeeList.Add(message.Employee);
+            EmployeeList = new ObservableCollection<Employee>(EmployeeRepository.GetEmployeeList());
         }
     }
 }
