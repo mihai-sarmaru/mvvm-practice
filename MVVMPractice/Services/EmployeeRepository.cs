@@ -19,8 +19,21 @@ namespace MVVMPractice.Services {
 
         public static void SaveEmployeeToList(Employee employee) {
             List<Employee> employeeList = GetEmployeeList();
-            employeeList.Add(employee);
-            SaveEmployeeList(employeeList);
+            SaveEmployeeList(UpdateEmployeeList(employeeList, employee));
+        }
+
+        public static List<Employee> UpdateEmployeeList(List<Employee> employeeList, Employee employee) {
+            if (ShouldUpdateEmployee(employeeList, employee)) {
+                Employee employeeToRemove = employeeList.Single(empID => empID.ID == employee.ID);
+                employeeList[employeeList.IndexOf(employeeToRemove)] = employee;
+            } else {
+                employeeList.Add(employee);
+            }
+            return employeeList;
+        }
+
+        public static bool ShouldUpdateEmployee(List<Employee> employeeList, Employee employee) {
+            return employeeList.Any(empID => empID.ID == employee.ID);
         }
 
         public static void SaveEmployeeList(List<Employee> employeeList) {

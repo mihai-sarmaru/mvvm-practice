@@ -50,6 +50,44 @@ namespace MVVMPracticeTests {
         }
 
         [TestMethod]
+        public void TestUpdateEmployeeList() {
+            List<Employee> empList = new List<Employee>();
+            Employee defaultEmployee = EmployeeRepository.DefaultEmployee();
+            empList.Add(defaultEmployee);
+
+            Assert.AreEqual(1, empList.Count);
+
+            defaultEmployee.Age = 20;
+            empList = EmployeeRepository.UpdateEmployeeList(empList, defaultEmployee);
+
+            Assert.AreEqual(1, empList.Count);
+
+            defaultEmployee = EmployeeRepository.DefaultEmployee();
+            defaultEmployee.ID = "new-test-ID";
+            empList = EmployeeRepository.UpdateEmployeeList(empList, defaultEmployee);
+
+            Assert.AreEqual(2, empList.Count);
+        }
+
+        [TestMethod]
+        public void TestShouldUpdateEmployee() {
+            List<Employee> empList = new List<Employee>();
+            Employee defaultEmployee = EmployeeRepository.DefaultEmployee();
+            empList.Add(defaultEmployee);
+
+            Assert.AreEqual(1, empList.Count);
+
+            defaultEmployee.Age = 20;
+
+            Assert.IsTrue(EmployeeRepository.ShouldUpdateEmployee(empList, defaultEmployee));
+
+            defaultEmployee = EmployeeRepository.DefaultEmployee();
+            defaultEmployee.ID = "new-test-ID";
+
+            Assert.IsFalse(EmployeeRepository.ShouldUpdateEmployee(empList, defaultEmployee));
+        }
+
+        [TestMethod]
         public void TestGetEmployeeList() {
             List<Employee> emp = EmployeeRepository.GetEmployeeList();
             Assert.IsNotNull(emp);
