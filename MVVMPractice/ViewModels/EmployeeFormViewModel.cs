@@ -20,7 +20,7 @@ namespace MVVMPractice.ViewModels {
         }
 
         public void UpdateEmployee(UpdateEmployeeFormMessage message) {
-            Employee = message.Employee;
+            if (message.Employee != null) Employee = message.Employee;
         }
 
         public void SaveEmployee() {
