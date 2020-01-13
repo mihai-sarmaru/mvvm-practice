@@ -102,11 +102,15 @@
                 </TextBox>
             </StackPanel>
 
-            <StackPanel  HorizontalAlignment="Left" Margin="20,10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,10">
+                <Button Content="New" 
+                        Command="{Binding NewCommand}"
+                        Margin="75,0,0,0" Width="90"/>
+                
                 <Button Content="Save" 
                         Command="{Binding SaveCommand}"
                         Style="{StaticResource buttonInError}"
-                        Margin="175,0,0,0" Width="100"/>
+                        Margin="20,0,0,0" Width="90"/>
             </StackPanel>
         </StackPanel>
 

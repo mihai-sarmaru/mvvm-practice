@@ -11,9 +11,11 @@ namespace MVVMPractice.ViewModels {
     public class EmployeeFormViewModel {
         public Employee Employee { get; set; } = new Employee();
         public ICommand SaveCommand { get; set; }
+        public ICommand NewCommand { get; set; }
 
         public EmployeeFormViewModel() {
             SaveCommand = new RelayCommand(SaveEmployee);
+            NewCommand = new RelayCommand(ClearForm);
             Messenger.Default.Register<UpdateEmployeeFormMessage>(this, UpdateEmployee);
         }
 
@@ -24,6 +26,10 @@ namespace MVVMPractice.ViewModels {
         public void SaveEmployee() {
             EmployeeRepository.SaveEmployeeToList(Employee);
             Messenger.Default.Send(new UpdateEmployeeListMessage());
+        }
+
+        public void ClearForm() {
+            Employee = new Employee();
         }
     }
 }
