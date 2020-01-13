@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conv="clr-namespace:MVVMPractice.Converters"
              xmlns:local="clr-namespace:MVVMPractice.ViewModels"
              xmlns:rule="clr-namespace:MVVMPractice.ValidationRules"
              mc:Ignorable="d">
@@ -11,7 +12,9 @@
     </UserControl.DataContext>
 
     <UserControl.Resources>
-        
+
+        <conv:EmployeeFormConverter x:Key="TextBoxZeroConverter"/>
+
         <ControlTemplate x:Key="IntegerMinMaxValidation">
             <DockPanel>
                 <TextBlock Foreground="Red">!</TextBlock>
@@ -64,6 +67,9 @@
                          Style="{StaticResource textBoxInError}">
                     <TextBox.Text>
                         <Binding Path="Employee.Age" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.Converter>
+                                <conv:EmployeeFormConverter/>
+                            </Binding.Converter>
                             <Binding.ValidationRules>
                                 <rule:IntegerMinMaxRule Min="18" Max="120"/>
                             </Binding.ValidationRules>
@@ -79,6 +85,9 @@
                          Style="{StaticResource textBoxInError}">
                     <TextBox.Text>
                         <Binding Path="Employee.PhoneNumber" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.Converter>
+                                <conv:EmployeeFormConverter/>
+                            </Binding.Converter>
                             <Binding.ValidationRules>
                                 <rule:IntegerMinMaxRule Min="0" Max="999999999"/>
                             </Binding.ValidationRules>
@@ -94,6 +103,9 @@
                          Style="{StaticResource textBoxInError}">
                     <TextBox.Text>
                         <Binding Path="Employee.Experience" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.Converter>
+                                <conv:EmployeeFormConverter/>
+                            </Binding.Converter>
                             <Binding.ValidationRules>
                                 <rule:IntegerMinMaxRule Min="0" Max="50"/>
                             </Binding.ValidationRules>

@@ -50,6 +50,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConverterTests\EmployeeFormConverterTests.cs" />
     <Compile Include="ModelTests\EmployeeTests.cs" />
     <Compile Include="ServiceTests\EmployeeRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
