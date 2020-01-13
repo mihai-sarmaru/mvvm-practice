@@ -36,6 +36,8 @@
             <Style.Triggers>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=nameTextBox}" Value="False"/>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=surnameTextBox}" Value="False"/>
                         <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ageTextBox}" Value="False"/>
                         <Condition Binding="{Binding Path=(Validation.HasError), ElementName=phoneNumberTextBox}" Value="False"/>
                         <Condition Binding="{Binding Path=(Validation.HasError), ElementName=experienceTextBox}" Value="False"/>
@@ -52,12 +54,32 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,10">
                 <TextBlock Text="Name:" MinWidth="75"/>
-                <TextBox Text="{Binding Employee.Name}" MinWidth="200"/>
+                <TextBox x:Name="nameTextBox" MinWidth="200"
+                         Validation.ErrorTemplate="{StaticResource IntegerMinMaxValidation}"
+                         Style="{StaticResource textBoxInError}">
+                    <TextBox.Text>
+                        <Binding Path="Employee.Name" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rule:NotEmptyRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,10">
                 <TextBlock Text="Surname:" MinWidth="75"/>
-                <TextBox Text="{Binding Employee.Surname}" MinWidth="200"/>
+                <TextBox x:Name="surnameTextBox" MinWidth="200"
+                         Validation.ErrorTemplate="{StaticResource IntegerMinMaxValidation}"
+                         Style="{StaticResource textBoxInError}">
+                    <TextBox.Text>
+                        <Binding Path="Employee.Surname" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rule:NotEmptyRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,10">
@@ -71,6 +93,7 @@
                                 <conv:EmployeeFormConverter/>
                             </Binding.Converter>
                             <Binding.ValidationRules>
+                                <rule:NotEmptyRule ValidatesOnTargetUpdated="True"/>
                                 <rule:IntegerMinMaxRule Min="18" Max="120"/>
                             </Binding.ValidationRules>
                         </Binding>
@@ -89,6 +112,7 @@
                                 <conv:EmployeeFormConverter/>
                             </Binding.Converter>
                             <Binding.ValidationRules>
+                                <rule:NotEmptyRule ValidatesOnTargetUpdated="True"/>
                                 <rule:IntegerMinMaxRule Min="0" Max="999999999"/>
                             </Binding.ValidationRules>
                         </Binding>
@@ -107,6 +131,7 @@
                                 <conv:EmployeeFormConverter/>
                             </Binding.Converter>
                             <Binding.ValidationRules>
+                                <rule:NotEmptyRule ValidatesOnTargetUpdated="True"/>
                                 <rule:IntegerMinMaxRule Min="0" Max="50"/>
                             </Binding.ValidationRules>
                         </Binding>

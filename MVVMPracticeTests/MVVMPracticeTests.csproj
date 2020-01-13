@@ -55,6 +55,7 @@
     <Compile Include="ServiceTests\EmployeeRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationRuleTests\IntegerMinMaxRuleTests.cs" />
+    <Compile Include="ValidationRuleTests\NoteEmptyRuleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

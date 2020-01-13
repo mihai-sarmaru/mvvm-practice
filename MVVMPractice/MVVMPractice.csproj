@@ -87,6 +87,7 @@
     <Compile Include="Messages\UpdateEmployeeListMessage.cs" />
     <Compile Include="Services\EmployeeRepository.cs" />
     <Compile Include="ValidationRules\IntegerMinMaxRule.cs" />
+    <Compile Include="ValidationRules\NotEmptyRule.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
     <Compile Include="ViewModels\EmployeeListViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
