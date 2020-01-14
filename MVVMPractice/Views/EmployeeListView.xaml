@@ -27,7 +27,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
 
-                    <Grid MinWidth="250">
+                    <Grid MinWidth="235">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
