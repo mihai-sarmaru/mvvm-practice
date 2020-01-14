@@ -57,6 +57,7 @@
     <Compile Include="ValidationRuleTests\IntegerMinMaxRuleTests.cs" />
     <Compile Include="ValidationRuleTests\NoteEmptyRuleTests.cs" />
     <Compile Include="ViewModelTests\EmployeeFormViewModelTests.cs" />
+    <Compile Include="ViewModelTests\EmployeeListViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
