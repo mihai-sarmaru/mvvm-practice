@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -11,9 +13,22 @@ using PropertyChanged;
 namespace MVVMPractice.ViewModels {
     [AddINotifyPropertyChangedInterface]
     public class EmployeeListViewModel {
+        private ICollectionView employeeListView;
+        private string employeeFilter;
+
         public ObservableCollection<Employee> EmployeeList { get; set; }
         public ICommand ListSelectionChanged { get; set; }
         public ICommand RemoveEmployeeCommand { get; set; }
+
+        public string EmployeeFilter {
+            get { return employeeFilter; }
+            set {
+                if (value != employeeFilter) {
+                    employeeFilter = value;
+                    employeeListView.Refresh();
+                }
+            }
+        }
 
         public EmployeeListViewModel() {
             EmployeeList = new ObservableCollection<Employee>(EmployeeRepository.GetEmployeeList());
@@ -21,6 +36,8 @@ namespace MVVMPractice.ViewModels {
 
             ListSelectionChanged = new RelayCommand<Employee>((emp) => EmployeeListSelectionChanged(emp));
             RemoveEmployeeCommand = new RelayCommand<string>((empID) => RemoveEmployeeFromList(empID));
+
+            SetEmployeeFilter();
         }
 
         public void EmployeeListSelectionChanged(Employee employee) {
@@ -35,6 +52,12 @@ namespace MVVMPractice.ViewModels {
 
         public void UpdateEmployeeList(UpdateEmployeeListMessage message) {
             EmployeeList = new ObservableCollection<Employee>(EmployeeRepository.GetEmployeeList());
+            SetEmployeeFilter();
+        }
+
+        private void SetEmployeeFilter() {
+            employeeListView = CollectionViewSource.GetDefaultView(EmployeeList);
+            employeeListView.Filter = o => string.IsNullOrEmpty(EmployeeFilter) ? true : ((Employee)o).Name.ToLower().Contains(EmployeeFilter);
         }
     }
 }

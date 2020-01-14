@@ -10,7 +10,11 @@
         <local:EmployeeListViewModel/>
     </UserControl.DataContext>
     
-    <Grid MinWidth="250" Margin="5, 10">
+    <Grid MinWidth="250" Margin="5, 40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
         <ListBox x:Name="EmployeeListBox" HorizontalAlignment="Stretch" ItemsSource="{Binding EmployeeList}">
             
@@ -48,6 +52,9 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
+
+        <TextBox Grid.Row="1" Margin="0, 5"
+                 Text="{Binding Path=EmployeeFilter, UpdateSourceTrigger=PropertyChanged}"/>
+
     </Grid>
 </UserControl>
