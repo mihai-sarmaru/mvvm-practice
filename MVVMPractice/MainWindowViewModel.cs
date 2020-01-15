@@ -1,5 +1,4 @@
 ﻿using MVVMPractice.Containers;
-using MVVMPractice.Services;
 using MVVMPractice.ViewModels;
 using Unity;
 
