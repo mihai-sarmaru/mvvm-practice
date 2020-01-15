@@ -1,9 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MVVMPractice.Containers;
 using MVVMPractice.Messages;
 using MVVMPractice.Models;
 using MVVMPractice.Services;
 using MVVMPractice.ViewModels;
 using System.Collections.Generic;
+using Unity;
 
 namespace MVVMPracticeTests.ViewModelTests {
     [TestClass]
@@ -19,7 +21,7 @@ namespace MVVMPracticeTests.ViewModelTests {
 
         [TestMethod]
         public void TestClearForm() {
-            EmployeeFormViewModel model = new EmployeeFormViewModel();
+            EmployeeFormViewModel model = ContainerHelper.Container.Resolve<EmployeeFormViewModel>();
             string expected = model.Employee.ID;
             model.ClearForm();
 
@@ -28,7 +30,7 @@ namespace MVVMPracticeTests.ViewModelTests {
 
         [TestMethod]
         public void TestSaveEmployee() {
-            EmployeeFormViewModel model = new EmployeeFormViewModel();
+            EmployeeFormViewModel model = ContainerHelper.Container.Resolve<EmployeeFormViewModel>();
             model.Employee = (Employee)_privateRepo.Invoke("DefaultEmployee");
             
             int expected = ((List<Employee>)_privateRepo.Invoke("GetEmployeeList")).Count;
@@ -39,7 +41,7 @@ namespace MVVMPracticeTests.ViewModelTests {
 
         [TestMethod]
         public void TestUpdateEmployee() {
-            EmployeeFormViewModel model = new EmployeeFormViewModel();
+            EmployeeFormViewModel model = ContainerHelper.Container.Resolve<EmployeeFormViewModel>();
             model.UpdateEmployee(new UpdateEmployeeFormMessage() { Employee = (Employee)_privateRepo.Invoke("DefaultEmployee")});
 
             Assert.AreEqual(model.Employee.ID, ((Employee)_privateRepo.Invoke("DefaultEmployee")).ID);

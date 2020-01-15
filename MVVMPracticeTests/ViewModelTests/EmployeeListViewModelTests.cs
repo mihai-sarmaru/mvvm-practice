@@ -1,8 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MVVMPractice.Containers;
 using MVVMPractice.Messages;
 using MVVMPractice.Models;
 using MVVMPractice.Services;
 using MVVMPractice.ViewModels;
+using Unity;
 
 namespace MVVMPracticeTests.ViewModelTests {
     [TestClass]
@@ -18,7 +20,7 @@ namespace MVVMPracticeTests.ViewModelTests {
 
         [TestMethod]
         public void TestUpdateEmployeeList() {
-            EmployeeListViewModel model = new EmployeeListViewModel();
+            EmployeeListViewModel model = ContainerHelper.Container.Resolve<EmployeeListViewModel>();
             int expected = model.EmployeeList.Count;
             Employee emp = (Employee)_privateRepo.Invoke("DefaultEmployee");
             emp.ID = "new-employee-ID";
@@ -30,7 +32,7 @@ namespace MVVMPracticeTests.ViewModelTests {
 
         [TestMethod]
         public void TestRemoveEmployeeFromList() {
-            EmployeeListViewModel model = new EmployeeListViewModel();
+            EmployeeListViewModel model = ContainerHelper.Container.Resolve<EmployeeListViewModel>();
 
             // Add 2 employees
             Employee emp = (Employee)_privateRepo.Invoke("DefaultEmployee");
