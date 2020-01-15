@@ -16,6 +16,8 @@ namespace MVVMPractice.ViewModels {
         private ICollectionView employeeListView;
         private string employeeFilter;
 
+        public EmployeeRepository EmployeeRepo { get; set; }
+
         public ObservableCollection<Employee> EmployeeList { get; set; }
         public ICommand ListSelectionChanged { get; set; }
         public ICommand RemoveEmployeeCommand { get; set; }
@@ -31,7 +33,8 @@ namespace MVVMPractice.ViewModels {
         }
 
         public EmployeeListViewModel() {
-            EmployeeList = new ObservableCollection<Employee>(EmployeeRepository.GetEmployeeList());
+            EmployeeRepo = new EmployeeRepository();
+            EmployeeList = new ObservableCollection<Employee>(EmployeeRepo.GetEmployeeList());
             Messenger.Default.Register<UpdateEmployeeListMessage>(this, UpdateEmployeeList);
 
             ListSelectionChanged = new RelayCommand<Employee>((emp) => EmployeeListSelectionChanged(emp));
@@ -47,11 +50,11 @@ namespace MVVMPractice.ViewModels {
         public void RemoveEmployeeFromList(string employeeID) {
             Employee employeeToRemove = EmployeeList.Single(empID => empID.ID == employeeID);
             EmployeeList.Remove(employeeToRemove);
-            EmployeeRepository.RemoveEmployeeFromList(employeeToRemove);
+            EmployeeRepo.RemoveEmployeeFromList(employeeToRemove);
         }
 
         public void UpdateEmployeeList(UpdateEmployeeListMessage message) {
-            EmployeeList = new ObservableCollection<Employee>(EmployeeRepository.GetEmployeeList());
+            EmployeeList = new ObservableCollection<Employee>(EmployeeRepo.GetEmployeeList());
             SetEmployeeFilter();
         }
 
