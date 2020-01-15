@@ -91,6 +91,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Containers\ContainerHelper.cs" />
     <Compile Include="Converters\EmployeeFormConverter.cs" />
     <Compile Include="Messages\UpdateEmployeeFormMessage.cs" />
     <Compile Include="Messages\UpdateEmployeeListMessage.cs" />
