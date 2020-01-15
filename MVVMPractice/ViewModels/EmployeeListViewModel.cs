@@ -16,7 +16,7 @@ namespace MVVMPractice.ViewModels {
         private ICollectionView employeeListView;
         private string employeeFilter;
 
-        private IEmployeeRepository _employeeRepo = new EmployeeRepository();
+        private IEmployeeRepository _employeeRepo;
 
         public ObservableCollection<Employee> EmployeeList { get; set; }
         public ICommand ListSelectionChanged { get; set; }
@@ -32,7 +32,9 @@ namespace MVVMPractice.ViewModels {
             }
         }
 
-        public EmployeeListViewModel() {
+        public EmployeeListViewModel(IEmployeeRepository employeeRepo) {
+            _employeeRepo = employeeRepo;
+
             EmployeeList = new ObservableCollection<Employee>(_employeeRepo.GetEmployeeList());
             Messenger.Default.Register<UpdateEmployeeListMessage>(this, UpdateEmployeeList);
 

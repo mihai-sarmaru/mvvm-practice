@@ -9,12 +9,13 @@ using PropertyChanged;
 namespace MVVMPractice.ViewModels {
     [AddINotifyPropertyChangedInterface]
     public class EmployeeFormViewModel {
-        private IEmployeeRepository _employeeRepo = new EmployeeRepository();
+        private IEmployeeRepository _employeeRepo;
         public Employee Employee { get; set; } = new Employee();
         public ICommand SaveCommand { get; set; }
         public ICommand NewCommand { get; set; }
 
-        public EmployeeFormViewModel() {
+        public EmployeeFormViewModel(IEmployeeRepository employeeRepo) {
+            _employeeRepo = employeeRepo;
             SaveCommand = new RelayCommand(SaveEmployee);
             NewCommand = new RelayCommand(ClearForm);
             Messenger.Default.Register<UpdateEmployeeFormMessage>(this, UpdateEmployee);

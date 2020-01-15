@@ -3,16 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:emp="clr-namespace:MVVMPractice.ViewModels"
         xmlns:local="clr-namespace:MVVMPractice.Views"
+        xmlns:model="clr-namespace:MVVMPractice"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="Employee Editor - Pure MVVM Demo" Height="400" Width="700">
+    
+    <Window.DataContext>
+        <model:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type emp:EmployeeFormViewModel}">
+            <local:EmployeeFormView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type emp:EmployeeListViewModel}">
+            <local:EmployeeListView/>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <local:EmployeeFormView HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <local:EmployeeListView HorizontalAlignment="Center" Grid.Column="1"/>
+        <ContentControl Content="{Binding LeftContent}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ContentControl Content="{Binding RightContent}" HorizontalAlignment="Center" Grid.Column="1"/>
     </Grid>
+    
 </Window>
