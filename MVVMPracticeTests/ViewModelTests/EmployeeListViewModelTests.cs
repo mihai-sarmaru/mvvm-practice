@@ -14,7 +14,7 @@ namespace MVVMPracticeTests.ViewModelTests {
 
         [TestInitialize]
         public void StartUp() {
-            _repo = new EmployeeRepository();
+            _repo = ContainerHelper.Container.Resolve<EmployeeRepository>();
             _privateRepo = new PrivateObject(_repo);
         }
 

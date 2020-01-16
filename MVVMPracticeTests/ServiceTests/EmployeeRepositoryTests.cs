@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MVVMPractice.Containers;
 using MVVMPractice.Models;
 using MVVMPractice.Services;
+using Unity;
 
 namespace MVVMPracticeTests {
     [TestClass]
@@ -18,7 +20,7 @@ namespace MVVMPracticeTests {
             if (File.Exists(JSON_PATH)) {
                 File.Delete(JSON_PATH);
             }
-            _repo = new EmployeeRepository();
+            _repo = ContainerHelper.Container.Resolve<EmployeeRepository>();
             _privateRepo = new PrivateObject(_repo);
         }
 
